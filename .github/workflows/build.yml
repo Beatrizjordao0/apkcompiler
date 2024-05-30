@@ -12,6 +12,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          persist-credentials: false # Evita problemas de credenciais persistentes
+
+      - name: Clean up git config
+        run: |
+          git config --global --unset http.https://github.com/.extraheader || true
 
       - name: Set up Python
         uses: actions/setup-python@v2
